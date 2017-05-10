@@ -5,6 +5,7 @@ import com.xcalculas.study.base.BaseController;
 import com.xcalculas.study.domain.SecondKill;
 import com.xcalculas.study.dto.SecondKillDto;
 import com.xcalculas.study.service.ISecondKillService;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,11 +45,18 @@ public class SecondKillPageController extends BaseController{
     public ModelAndView go2detail(@PathVariable String id){
         Map<String, Object> result = Maps.newHashMap();
         SecondKillDto secondKillDto = secondKillService.getSecondKillById(id);
+        String pattern = "yyyy/MM/dd HH:mm:ss";
         Date today = new Date();
         result.put("today", today.getTime());
-        result.put("startTime",secondKillDto.getStartTime().getTime());
-        result.put("endTime",secondKillDto.getEndTime().getTime());
-        result.put("canSecondKill", today.after(secondKillDto.getStartTime()) && today.before(secondKillDto.getEndTime()));
+        result.put("startTime", DateFormatUtils.format(secondKillDto.getStartTime(), pattern));
+
+        if (today.before(secondKillDto.getStartTime())){
+            result.put("canSecondKill", 1);
+        }else if(today.after(secondKillDto.getEndTime())){
+            result.put("canSecondKill", -1);
+        }else{
+            result.put("canSecondKill", 0);
+        }
         result.put("detail", secondKillDto);
         return packagingMAV(result,"html/detail");
     }

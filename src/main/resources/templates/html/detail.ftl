@@ -10,10 +10,8 @@
 <script>
     var startTime = '${startTime!0}',
         endTime = '${endTime!0}',
-        tody = '${today}',
-        number = '${detail.number}',
         seconId = '${detail.seckillId}',
-        canSecondKill = ${canSecondKill?c};
+        seckonKillStatus = ${canSecondKill?c};
 </script>
 <body>
 <div class="container-fluid">
@@ -22,15 +20,20 @@
             ${detail.name}
         </div>
         <div class="panel-body">
-            <p >
-                <span class="glyphicon glyphicon-time"></span>
-                秒杀倒计时
-            </p>
-            <div class="countdown-container" id="countDown">
 
+            <div class="countdown-container hidden second-kill-option">
+                <p >
+                    <span class="glyphicon glyphicon-time"></span>
+                    秒杀倒计时
+                </p>
+                <div id="countDown">
+                </div>
             </div>
-            <div class="second-kill">
+            <div class="second-kill hidden second-kill-option">
                 <button id="secondKill" class="btn btn-primary">秒杀</button>
+            </div>
+            <div class="second-kill-tip hidden second-kill-option">
+                秒杀结束
             </div>
         </div>
 
@@ -52,7 +55,7 @@
         <span class="count next top"><%= next %></span>
         <span class="count next bottom"><%= next %></span>
         <span class="count curr bottom"><%= curr %></span>
-        <span class="tip"><%= label.length < 6 ? label : label.substr(0, 3)  %></span>
+        <span class="tip"><%= timeUnit  %></span>
     </div>
 </script>
 <script>

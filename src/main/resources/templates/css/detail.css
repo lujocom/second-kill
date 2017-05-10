@@ -1,9 +1,9 @@
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
 }
 
@@ -13,8 +13,7 @@ body{
     border-bottom: 1px solid #eee;
 }
 
-.panel-body{
-    display: inline-block;
+.panel-body {
     zoom: 1;
     letter-spacing: normal;
     word-spacing: normal;
@@ -23,21 +22,20 @@ body{
     padding: 15px;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
-
-.detail dt{
+.detail dt {
     width: 80px;
     text-align: left;
 }
 
-.detail dd{
+.detail dd {
     margin-left: 80px;
 }
 
-.bg{
+.bg {
     background-image: linear-gradient(45deg, #361752, #B31B67);
     background-image: -webkit-linear-gradient(45deg, #361752, #B31B67);
     background-image: -moz-linear-gradient(45deg, #361752, #B31B67);
@@ -47,16 +45,17 @@ body{
     padding: 2em 0 2em;
     font-size: 125%;
 
-    font-family: FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
 }
 
-.countdown-container{
+#countDown {
     height: 130px;
 }
 
+
 .countdown-container .time {
     border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     display: inline-block;
     text-align: center;
     position: relative;
@@ -81,12 +80,27 @@ body{
     -o-transform: translateZ(0);
     transform: translateZ(0);
 
-    -webkit-transform: translate3d(0,0,0);
-    -moz-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    -o-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
+
+.countdown-container .time-unit{
+    border-radius: 5px;
+    background: #202020;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    height: 95px;
+    width: 65px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+    line-height: 2.4em;
+}
+
 .countdown-container .count {
     background: #202020;
     color: #f8f8f8;
@@ -113,9 +127,10 @@ body{
     -o-transform-style: flat;
     transform-style: flat;
 }
+
 .countdown-container .count.top {
-    border-top: 1px solid rgba(255,255,255,0.2);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px 5px 0 0;
     height: 50%;
 
@@ -125,12 +140,13 @@ body{
     -o-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
 }
+
 .countdown-container .count.bottom {
-    background-image: linear-gradient(rgba(255,255,255,0.1), transparent);
-    background-image: -webkit-linear-gradient(rgba(255,255,255,0.1), transparent);
-    background-image: -moz-linear-gradient(rgba(255,255,255,0.1), transparent);
-    background-image: -ms-linear-gradient(rgba(255,255,255,0.1), transparent);
-    background-image: -o-linear-gradient(rgba(255,255,255,0.1), transparent);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    background-image: -ms-linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    background-image: -o-linear-gradient(rgba(255, 255, 255, 0.1), transparent);
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     border-radius: 0 0 5px 5px;
@@ -144,8 +160,10 @@ body{
     -o-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
+
 .countdown-container .count.next {
 }
+
 .countdown-container .tip {
     font-size: 16px;
     margin-top: 5px;
@@ -154,6 +172,7 @@ body{
     top: 95px;
     width: 100%;
 }
+
 /* Animation start */
 .countdown-container .count.curr.top {
     -webkit-transform: rotateX(0deg);
@@ -163,6 +182,7 @@ body{
     transform: rotateX(0deg);
     z-index: 3;
 }
+
 .countdown-container .count.next.bottom {
     -webkit-transform: rotateX(90deg);
     -moz-transform: rotateX(90deg);
@@ -171,6 +191,7 @@ body{
     transform: rotateX(90deg);
     z-index: 2;
 }
+
 /* Animation end */
 .countdown-container .flip .count.curr.top {
     -webkit-transition: all 250ms ease-in-out;
@@ -185,6 +206,7 @@ body{
     -o-transform: rotateX(-90deg);
     transform: rotateX(-90deg);
 }
+
 .countdown-container .flip .count.next.bottom {
     -webkit-transition: all 250ms ease-in-out 250ms;
     -moz-transition: all 250ms ease-in-out 250ms;
@@ -225,4 +247,12 @@ body{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.second-kill .btn-primary{
+    width: 80%;
 }

@@ -1,27 +1,45 @@
 $(function () {
 
-    $.post(getPath()+"/second-kill/api/now",{},function (data) {
-        if(data.code === '000'){
 
-        }
-    });
-
-    initCountDown();
-
-    $('#secondKill').on('click', function () {
-        exposeSecondKill().then(function (data) {
-            console.log(data);
-            if(!!data.md5){
-                doSecondKill({md5:data.md5});
-            }
-        });
-    });
+    switch (seckonKillStatus){
+        case 1 :
+            $('.countdown-container').removeClass('hidden')
+                .siblings('div.second-kill-option').addClass('hidden');
+            initCountDown(startTime);
+            break;
+        case 0:
+            executeSecondKill();
+            break;
+        case -1:
+            $('.second-kill-tip').removeClass('hidden')
+                .siblings('div.second-kill-option').addClass('hidden');
+            break;
+    }
 
 });
 
-function initCountDown(startTime, currentTime) {
-    var labels = ['weeks', 'days', 'hours', 'minutes', 'seconds'],
-        nextYear = new Date(startTime),
+function executeSecondKill() {
+    $('.second-kill').removeClass('hidden')
+        .siblings('div.second-kill-option').addClass('hidden');
+    $('#secondKill').on('click', function () {
+        exposeSecondKill().then(function (data) {
+            console.log(data);
+            if(data.code === '000' && !!data.md5){
+                doSecondKill({md5:data.md5});
+            }else{
+                $('.countdown-container').removeClass('hidden')
+                    .siblings('div.second-kill-option').addClass('hidden');
+                initCountDown(startTime);
+            }
+        });
+    });
+}
+
+function initCountDown(startTime) {
+    var labels = ['days', 'hours', 'minutes', 'seconds'],
+        timeUnit = ['天','小时','分钟','秒'],
+        // nextYear = (new Date().getFullYear() + 1) + '/01/01',
+        nextYear = startTime,
         template = _.template($('#main-example-template').html()),
         currDate = '00:00:00:00:00',
         nextDate = '00:00:00:00:00',
@@ -52,16 +70,19 @@ function initCountDown(startTime, currentTime) {
         $example.append(template({
             curr: initData[label],
             next: initData[label],
-            label: label
+            label: label,
+            timeUnit: timeUnit[i]
         }));
     });
     // Starts the countdown
     $example.countdown(nextYear, function(event) {
-        var newDate = event.strftime('%w:%d:%H:%M:%S'),
+        var newDate = event.strftime('%D:%H:%M:%S'),
             data;
+
         if (newDate !== nextDate) {
             currDate = nextDate;
             nextDate = newDate;
+
             // Setup the data
             data = {
                 'curr': strfobj(currDate),
@@ -81,6 +102,8 @@ function initCountDown(startTime, currentTime) {
                 }, 50, $node);
             });
         }
+    }).on('finish.countdown', function () {
+        executeSecondKill();
     });
 }
 

@@ -17,6 +17,7 @@ public enum ReturnCode {
     ERROR_NONE_SECOND_KILL("104", ""),
     ERROR_BUSINESS("103", "业务异常"),
     ERROR_SECOND_KILL_CLOSED("101","秒杀关闭"),
+    ERROR_SECOND_KILL_NO_START("104","秒杀未开始"),
     ERROR_REPEAT_SECOND_KILL("102","重复秒杀");
 
 
